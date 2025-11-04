@@ -1,0 +1,113 @@
+/* -------------------------------------- */
+/* 1. Estils Base Global i Contenidors */
+/* -------------------------------------- */
+body {
+    font-family: 'Verdana', Geneva, Tahoma, sans-serif;
+    background-color: #e8f5e9; /* Verd molt suau (tema de diners) */
+    color: #38424a; 
+    padding: 20px;
+    line-height: 1.6;
+}
+
+.exercise-container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.exercise-box {
+    margin-bottom: 40px;
+    padding: 25px;
+    border: 1px solid #c8e6c9;
+    border-radius: 10px;
+    background-color: #f7fcf7;
+}
+
+.exercise-box h2 {
+    color: #4CAF50; /* Verd primari */
+    border-bottom: 2px solid #4CAF50;
+    padding-bottom: 10px;
+    margin-top: 0;
+    margin-bottom: 25px;
+}
+
+/* Utilitat */
+.highlight {
+    font-weight: bold;
+    color: #e91e63; /* Accent per als totals d'ítems */
+}
+
+
+/* -------------------------------------- */
+/* 2. Estils Específics de la Taula de Pressupost */
+/* -------------------------------------- */
+
+.budget-list-container h3 {
+    color: #388E3C; /* Verd fosc */
+    margin-bottom: 20px;
+    font-size: 1.6em;
+}
+
+.budget-table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.budget-table thead th {
+    background-color: #4CAF50; /* Verd de capçalera */
+    color: white;
+    padding: 14px 15px;
+    text-align: left;
+    font-weight: 600;
+}
+
+.budget-table tbody td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #e0f2f1;
+    vertical-align: middle;
+}
+
+.budget-table tbody tr:hover {
+    background-color: #f1f8e9;
+}
+
+.categoria-cell {
+    font-weight: bold;
+}
+
+.import-cell {
+    text-align: right;
+    font-weight: bold;
+    color: #D32F2F; /* Accent vermell per al cost */
+}
+
+/* Fila del Total General (Footer) */
+.budget-table tfoot .table-footer {
+    background-color: #c8e6c9; /* Verd suau per al total */
+    font-weight: bold;
+    color: #1B5E20;
+}
+
+.budget-table tfoot td {
+    padding: 15px;
+    border-top: 3px solid #388E3C;
+}
+
+.budget-table tfoot td:first-child {
+    text-align: right;
+    font-size: 1.1em;
+}
+
+.highlight-total-viatge {
+    font-size: 1.3em;
+    color: #00897B; /* Turquesa fosc per èmfasi */
+    font-weight: 900;
+    display: block; /* Ocupa tot l'espai de la cel·la */
+}
