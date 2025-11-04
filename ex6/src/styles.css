@@ -1,0 +1,102 @@
+/* -------------------------------------- */
+/* 1. Estils Base Global i Contenidors */
+/* -------------------------------------- */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f4f8; /* Blau molt suau */
+    color: #2c3e50; /* Gris fosc */
+    padding: 20px;
+    line-height: 1.6;
+}
+
+.exercise-container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.exercise-box {
+    margin-bottom: 40px;
+    padding: 25px;
+    border: 1px solid #c8d9e8;
+    border-radius: 10px;
+    background-color: #ffffff;
+}
+
+.exercise-box h2 {
+    color: #1abc9c; /* Verd turquesa */
+    border-bottom: 2px solid #1abc9c;
+    padding-bottom: 10px;
+    margin-top: 0;
+    margin-bottom: 25px;
+}
+
+
+/* -------------------------------------- */
+/* 2. Estils Específics de la Taula d'Entrenament */
+/* -------------------------------------- */
+
+.workout-list-container h3 {
+    color: #3498db; /* Blau clar */
+    margin-bottom: 20px;
+    font-size: 1.6em;
+}
+
+.workout-table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.workout-table thead th {
+    background-color: #3498db; /* Blau de capçalera */
+    color: white;
+    padding: 14px 15px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.workout-table tbody td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #ecf0f1;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.workout-table tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* Fila de Volum (Footer) */
+.workout-table tfoot .table-footer {
+    background-color: #ecf0f1; 
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.workout-table tfoot td {
+    padding: 15px;
+    border-top: 3px solid #3498db;
+}
+
+.workout-table tfoot td:first-child {
+    text-align: right;
+    font-size: 1.1em;
+}
+
+.volum-item {
+    font-weight: 600;
+    color: #e67e22; /* Taronja */
+}
+
+.highlight-volum-total {
+    font-size: 1.2em;
+    color: #1abc9c; /* Verd turquesa (èmfasi) */
+    font-weight: bold;
+}
