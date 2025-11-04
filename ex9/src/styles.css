@@ -1,0 +1,117 @@
+/* -------------------------------------- */
+/* 1. Estils Base Global i Contenidors */
+/* -------------------------------------- */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f4f7; 
+    color: #333;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+.exercise-container {
+    max-width: 550px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.exercise-box {
+    margin-bottom: 40px;
+    padding: 25px;
+    border: 1px solid #d4e0e8;
+    border-radius: 10px;
+    background-color: #ffffff;
+}
+
+.exercise-box h2 {
+    color: #3f51b5; /* Blau primari */
+    border-bottom: 2px solid #3f51b5;
+    padding-bottom: 10px;
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+/* -------------------------------------- */
+/* 2. Estils Específics del Formulari */
+/* -------------------------------------- */
+
+.registration-form {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box; /* Per incloure padding i border dins de l'amplada */
+    font-size: 1em;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 12px;
+    background-color: #4CAF50; /* Verd per a accions principals */
+    color: white;
+    font-size: 1.1em;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-submit:hover {
+    background-color: #43a047;
+}
+
+/* Missatge de Benvinguda */
+.welcome-message {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #c8e6c9;
+    border-radius: 6px;
+    background-color: #e8f5e9; /* Fons verd suau */
+    color: #388e3c;
+}
+
+.welcome-message h3 {
+    color: #388e3c;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.highlight-email {
+    font-weight: bold;
+    color: #1a73e8; /* Blau d'èmfasi */
+}
+
+/* Dades en temps real (Opcional) */
+.real-time-data {
+    margin-top: 25px;
+    padding: 10px;
+    border-top: 1px dashed #ccc;
+    font-size: 0.9em;
+    color: #777;
+}
+
+.real-time-data span {
+    font-style: italic;
+    font-weight: bold;
+    color: #3f51b5;
+}
