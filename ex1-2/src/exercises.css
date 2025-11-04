@@ -1,0 +1,64 @@
+/* Reset bàsic */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+/* Contenidor global */
+.exercise-container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Estil per separar cada exercici */
+.exercise-box {
+    margin-bottom: 40px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.exercise-box h2 {
+    color: #3f51b5; /* Blau primari */
+    border-bottom: 2px solid #3f51b5;
+    padding-bottom: 10px;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+/* Estils de llista i taula (útils per a la llista de compra i notes) */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    background: #fff;
+    margin-bottom: 8px;
+    padding: 10px;
+    border-radius: 4px;
+    border-left: 5px solid #00bcd4; /* Accent color */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.highlight {
+    font-weight: bold;
+    color: #e91e63; /* Accent per a noms/totals */
+}
+
+/* Estils per a l'Exercici 1/2 */
+.first-component-style {
+    color: green;
+    font-size: 1.5em;
+    border-bottom: 2px solid green;
+    padding: 10px 0;
+    margin-bottom: 10px;
+}
