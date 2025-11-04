@@ -1,0 +1,142 @@
+/* -------------------------------------- */
+/* 1. Estils Base Global i Contenidors */
+/* -------------------------------------- */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+/* Contenidor principal de l'aplicació/exercici */
+.exercise-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Contenidor específic de l'exercici (el que conté l'h2 i el component) */
+.exercise-box {
+    margin-bottom: 40px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.exercise-box h2 {
+    color: #3f51b5; /* Blau primari */
+    border-bottom: 2px solid #3f51b5;
+    padding-bottom: 10px;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+/* Utilitat */
+.highlight {
+    font-weight: bold;
+    color: #e91e63; /* Accent per a noms/totals d'ítems */
+}
+
+
+/* -------------------------------------- */
+/* 2. Estils Específics de la Llista de la Compra */
+/* -------------------------------------- */
+
+.shopping-list-container {
+    margin-top: 20px;
+}
+
+.shopping-list-container h3 {
+    color: #00bcd4;
+    margin-bottom: 15px;
+    font-size: 1.5em;
+}
+
+.list-group {
+    list-style: none;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+/* Estil per a cada ítem de la llista (ShoppingItem) */
+.shopping-list-container li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    background: #fff;
+    border-radius: 0; /* Deshabilitem el border-radius dels <li> genèrics */
+}
+
+.shopping-list-container li:last-child {
+    border-bottom: none;
+}
+
+.item-details {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.item-details .tipus {
+    font-size: 0.9em;
+    color: #666;
+    width: 15%;
+    min-width: 60px;
+}
+
+.item-details .nom {
+    font-weight: bold;
+    color: #333;
+    width: 30%;
+}
+
+.details-group {
+    display: flex;
+    gap: 20px;
+    font-size: 0.95em;
+    width: 55%;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.details-group span {
+    white-space: nowrap; /* Evita que es trenqui el text dins de les columnes */
+}
+
+.details-group .total-item {
+    min-width: 100px;
+    text-align: right;
+}
+
+/* Estil per al total de l'ítem */
+.total-item strong.highlight {
+    color: #e91e63; 
+    font-size: 1.1em;
+}
+
+/* Barra del total general (footer) */
+.total-bar {
+    text-align: right;
+    padding: 15px;
+    border-top: 2px solid #3f51b5;
+    margin-top: 15px;
+    font-size: 1.2em;
+    background-color: #f0f0f8;
+    border-radius: 0 0 4px 4px;
+}
+
+.highlight-total {
+    font-size: 1.3em;
+    color: #4CAF50; /* Verd per al total final */
+    font-weight: bold;
+    margin-left: 10px;
+}
