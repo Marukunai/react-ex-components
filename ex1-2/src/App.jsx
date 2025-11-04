@@ -2,7 +2,7 @@ import React from 'react';
 import MyFirstComponent from './components/MyFirstComponent'; 
 
 function App() {
-  const myName = "El teu Nom";
+  const myName = "Marukunai";
 
   return (
     <div className="exercise-container">
