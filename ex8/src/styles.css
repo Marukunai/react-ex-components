@@ -1,0 +1,91 @@
+/* -------------------------------------- */
+/* 1. Estils Base Global i Contenidors */
+/* -------------------------------------- */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fce4ec; /* Rosa molt suau */
+    color: #333;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+.exercise-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.exercise-box {
+    margin-bottom: 40px;
+    padding: 25px;
+    border: 1px solid #f8bbd0;
+    border-radius: 10px;
+    background-color: #ffffff;
+}
+
+.exercise-box h2 {
+    color: #e91e63; /* Rosa d'èmfasi */
+    border-bottom: 2px solid #e91e63;
+    padding-bottom: 10px;
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+
+/* -------------------------------------- */
+/* 2. Estils Específics del Comptador */
+/* -------------------------------------- */
+
+.like-counter-container {
+    padding: 20px;
+}
+
+.like-display {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #888;
+}
+
+.like-count {
+    font-size: 2em;
+    font-weight: bold;
+    color: #e91e63; /* Rosa intens */
+    margin-right: 5px;
+}
+
+/* Estils del Botó */
+.btn-like {
+    padding: 10px 25px;
+    font-size: 1.1em;
+    font-weight: bold;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Estat NO Liked (Inicial) */
+.btn-not-liked {
+    background-color: #f0f0f0;
+    color: #555;
+    border: 2px solid #ccc;
+}
+.btn-not-liked:hover {
+    background-color: #e0e0e0;
+}
+
+/* Estat Liked (Actiu) */
+.btn-liked {
+    background-color: #e91e63;
+    color: white;
+    border: 2px solid #e91e63;
+    box-shadow: 0 4px 8px rgba(233, 30, 99, 0.4);
+}
+.btn-liked:hover {
+    background-color: #d81b60;
+}
