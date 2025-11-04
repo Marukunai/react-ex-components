@@ -1,0 +1,105 @@
+/* -------------------------------------- */
+/* 1. Estils Base Global i Contenidors */
+/* -------------------------------------- */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+.exercise-container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.exercise-box {
+    margin-bottom: 40px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.exercise-box h2 {
+    color: #3f51b5;
+    border-bottom: 2px solid #3f51b5;
+    padding-bottom: 10px;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+
+/* -------------------------------------- */
+/* 2. Estils Específics de la Taula de Notes */
+/* -------------------------------------- */
+
+.grade-list-container h3 {
+    color: #00bcd4;
+    margin-bottom: 15px;
+    font-size: 1.5em;
+}
+
+.grades-table {
+    width: 100%;
+    border-collapse: collapse; /* Taula amb línies simples */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden; /* Per aplicar border-radius a la taula */
+}
+
+.grades-table thead th {
+    background-color: #3f51b5;
+    color: white;
+    padding: 12px 15px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.grades-table tbody td {
+    padding: 10px 15px;
+    border-bottom: 1px solid #eee;
+    vertical-align: middle;
+}
+
+/* Colors de l'Estat */
+.status-aprovat {
+    color: #4CAF50; /* Verd */
+    font-weight: bold;
+}
+
+.status-suspes {
+    color: #f44336; /* Vermell */
+    font-weight: bold;
+}
+
+/* Fila de la Mitjana General */
+.grades-table tfoot .table-footer {
+    background-color: #e8eaf6; /* Fons suau */
+    font-weight: bold;
+}
+
+.grades-table tfoot td {
+    padding: 15px;
+    border-top: 3px solid #3f51b5;
+}
+
+.grades-table tfoot td:first-child {
+    text-align: right;
+}
+
+.highlight-mitjana {
+    font-size: 1.1em;
+}
+
+/* Estil per a la fila completa si l'estat és Suspes (Mitjana General) */
+.grades-table tfoot .status-suspes {
+    background-color: #ffcdd2; /* Vermell suau de fons */
+    color: #d32f2f;
+}
