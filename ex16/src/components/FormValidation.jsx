@@ -53,7 +53,7 @@ function FormValidation() {
         } else if (validationStatus === STATUS_ERROR) {
             return (
                 <p className="message-text message-error">
-                    ❌ **Falten dades**. Si us plau, omple tots els camps.
+                    ❌ <b>Falten dades</b>. Si us plau, omple tots els camps.
                 </p>
             );
         }
