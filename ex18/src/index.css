@@ -1,0 +1,76 @@
+/* -------------------------------------- */
+/* 1. Estils Base Global i Contenidors */
+/* -------------------------------------- */
+body {
+    font-family: 'Consolas', monospace; 
+    background-color: #fcfcfc;
+    color: #333;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+.exercise-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.exercise-box {
+    padding: 25px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #ffffff;
+}
+
+.exercise-box h2 {
+    color: #27ae60; /* Verd */
+    border-bottom: 2px solid #27ae60;
+    padding-bottom: 15px;
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+/* -------------------------------------- */
+/* 2. Estils Específics de l'Indicador */
+/* -------------------------------------- */
+
+.status-container h3 {
+    color: #34495e;
+    margin-bottom: 20px;
+}
+
+.connection-indicator {
+    font-size: 2em;
+    font-weight: bold;
+    padding: 20px;
+    border-radius: 10px;
+    transition: all 0.5s ease;
+    display: inline-block;
+    min-width: 200px;
+}
+
+/* Estat Online */
+.status-online {
+    background-color: #e8f8f5; /* Verd clar */
+    color: #2ecc71;
+    box-shadow: 0 0 10px rgba(46, 204, 113, 0.5);
+}
+
+/* Estat Offline */
+.status-offline {
+    background-color: #fbe6e6; /* Vermell clar */
+    color: #e74c3c;
+    box-shadow: 0 0 10px rgba(231, 76, 60, 0.5);
+}
+
+.note {
+    margin-top: 30px;
+    padding: 10px;
+    font-size: 0.9em;
+    color: #555;
+    border-top: 1px dashed #ccc;
+}
