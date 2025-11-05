@@ -1,0 +1,153 @@
+/* -------------------------------------- */
+/* 1. Estils Base Global i Contenidors */
+/* -------------------------------------- */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #e8eaf6; 
+    color: #333;
+    padding: 20px;
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+}
+
+.exercise-container {
+    max-width: 500px;
+    width: 100%;
+    margin-top: 50px;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.exercise-box h2 {
+    color: #5e35b1; 
+    border-bottom: 3px solid #7e57c2;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* -------------------------------------- */
+/* 2. Estils del Gestor de Tasques */
+/* -------------------------------------- */
+
+.todo-app-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Formulari */
+.todo-form {
+    display: flex;
+    gap: 10px;
+}
+
+.task-input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1em;
+}
+
+.btn-add {
+    padding: 10px 15px;
+    background-color: #4caf50; 
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.btn-add:hover { background-color: #43a047; }
+
+/* Llista de Tasques */
+.task-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #eee;
+    border-radius: 6px;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    background-color: #fff;
+    transition: background-color 0.3s;
+}
+
+.task-item:last-child {
+    border-bottom: none;
+}
+
+.task-item.completed {
+    background-color: #f1f8e9;
+    opacity: 0.7;
+}
+
+.task-item input[type="checkbox"] {
+    margin-right: 15px;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.task-text {
+    flex-grow: 1;
+    text-align: left;
+}
+
+.task-item.completed .task-text {
+    text-decoration: line-through;
+    color: #777;
+}
+
+.btn-delete {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1em;
+    opacity: 0.6;
+    transition: opacity 0.3s;
+}
+.btn-delete:hover {
+    opacity: 1;
+    color: #c62828;
+}
+
+/* Estadístiques i Neteja */
+.todo-stats {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    font-size: 0.9em;
+    color: #555;
+    border-bottom: 1px solid #eee;
+}
+
+.btn-clear {
+    padding: 10px;
+    background-color: #ff9800; 
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-clear:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.btn-clear:hover:not(:disabled) { background-color: #fb8c00; }
