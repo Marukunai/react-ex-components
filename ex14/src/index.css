@@ -1,0 +1,93 @@
+/* -------------------------------------- */
+/* 1. Estils Base Global i Contenidors */
+/* -------------------------------------- */
+body {
+    font-family: 'Verdana', Geneva, Tahoma, sans-serif;
+    background-color: #e3f2fd; /* Blau clar suau */
+    color: #333;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+.exercise-container {
+    max-width: 500px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.exercise-box {
+    padding: 25px;
+    border: 1px solid #bbdefb;
+    border-radius: 10px;
+    background-color: #ffffff;
+}
+
+.exercise-box h2 {
+    color: #1565c0; /* Blau fosc */
+    border-bottom: 2px solid #1565c0;
+    padding-bottom: 15px;
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+/* -------------------------------------- */
+/* 2. Estils Específics del Toggle */
+/* -------------------------------------- */
+
+.toggle-container {
+    padding: 10px;
+}
+
+.btn-toggle {
+    padding: 10px 20px;
+    font-size: 1.1em;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 80%;
+    margin-bottom: 20px;
+}
+
+/* Estil per a "Mostrar" */
+.btn-show {
+    background-color: #4CAF50; /* Verd */
+    color: white;
+}
+.btn-show:hover {
+    background-color: #43a047;
+}
+
+/* Estil per a "Ocultar" */
+.btn-hide {
+    background-color: #f44336; /* Vermell */
+    color: white;
+}
+.btn-hide:hover {
+    background-color: #d32f2f;
+}
+
+.message-box {
+    margin-top: 20px;
+    padding: 20px;
+    border: 2px solid #ffc107; /* Taronja/Groc */
+    border-radius: 8px;
+    background-color: #fff8e1;
+    animation: fadeIn 0.5s ease-out; /* Animació suau */
+}
+
+.message-box p {
+    font-size: 1.2em;
+    color: #6d4c41;
+    margin: 0;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
