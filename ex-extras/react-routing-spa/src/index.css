@@ -1,0 +1,102 @@
+/* -------------------------------------- */
+/* 1. Estils Base Global i Contenidors */
+/* -------------------------------------- */
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f0f4f8;
+    color: #333;
+    padding: 0;
+    margin: 0;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+.exercise-box {
+    max-width: 800px;
+    margin: 40px auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.exercise-box h2 {
+    color: #00796b; /* Verd Te */
+    border-bottom: 3px solid #b2dfdb;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* -------------------------------------- */
+/* 2. Estils de la Barra de Navegació */
+/* -------------------------------------- */
+
+.nav-bar {
+    display: flex;
+    justify-content: center;
+    background-color: #00796b;
+    padding: 15px 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    margin: 0 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.1s;
+    font-weight: 600;
+}
+
+.nav-link:hover {
+    background-color: #004d40; /* Verd més fosc */
+}
+
+.nav-dynamic {
+    background-color: #ffb300; /* Groc per destacar la ruta dinàmica */
+    color: #333;
+}
+
+.nav-dynamic:hover {
+    background-color: #ff8f00;
+}
+
+/* -------------------------------------- */
+/* 3. Estils de les Pàgines */
+/* -------------------------------------- */
+
+.page-content {
+    padding: 20px;
+    text-align: center;
+}
+
+.page-content h2 {
+    color: #00796b;
+    margin-bottom: 20px;
+}
+
+.user-detail-box {
+    background-color: #e0f2f1;
+    border: 1px solid #b2dfdb;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px auto;
+}
+
+.user-detail-box p {
+    font-size: 1.1em;
+}
+
+.tip {
+    font-style: italic;
+    color: #666;
+    margin-top: 30px;
+}
+
+.not-found {
+    color: #d32f2f; /* Vermell fort */
+    text-align: center;
+    padding: 50px 0;
+}
