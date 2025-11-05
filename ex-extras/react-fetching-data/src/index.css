@@ -1,0 +1,112 @@
+/* -------------------------------------- */
+/* 1. Estils Base Global i Contenidors */
+/* -------------------------------------- */
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #f0f4f8;
+    color: #333;
+    padding: 20px;
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+}
+
+.exercise-container {
+    max-width: 700px;
+    width: 100%;
+}
+
+.exercise-box {
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.exercise-box h2 {
+    color: #3f51b5; /* Blau Indi */
+    border-bottom: 3px solid #c5cae9;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* -------------------------------------- */
+/* 2. Estils de l'Estat de la Petició */
+/* -------------------------------------- */
+
+.status-message {
+    padding: 15px;
+    border-radius: 6px;
+    font-size: 1.1em;
+    font-weight: 600;
+    text-align: center;
+}
+
+.loading {
+    background-color: #fffde7;
+    color: #ffc107; /* Groc */
+    border: 1px solid #ffeb3b;
+}
+
+.error {
+    background-color: #ffebee;
+    color: #f44336; /* Vermell */
+    border: 1px solid #ffcdd2;
+}
+
+.no-data {
+    background-color: #eceff1;
+    color: #607d8b;
+    border: 1px solid #cfd8dc;
+}
+
+/* -------------------------------------- */
+/* 3. Estils de la Llista d'Usuaris */
+/* -------------------------------------- */
+
+.user-list-container h3 {
+    text-align: center;
+    color: #009688; /* Turquesa */
+    margin-bottom: 25px;
+}
+
+.user-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.user-card {
+    display: flex;
+    flex-direction: column;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    background-color: #f9f9f9;
+    border: 1px solid #eee;
+    border-left: 5px solid #009688; /* Barra lateral */
+    border-radius: 6px;
+    transition: background-color 0.3s;
+}
+
+.user-card:hover {
+    background-color: #e0f2f1;
+}
+
+.user-name {
+    font-size: 1.2em;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.user-info, .user-website {
+    font-size: 0.9em;
+    color: #607d8b;
+}
+
+.user-website {
+    margin-top: 5px;
+}
