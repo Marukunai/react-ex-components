@@ -1,0 +1,108 @@
+/* -------------------------------------- */
+/* 1. Estils Base Global i Contenidors */
+/* -------------------------------------- */
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #f0f4f8; /* Gris suau */
+    color: #333;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+.exercise-container {
+    max-width: 650px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.exercise-box {
+    padding: 25px;
+    border: 1px solid #c8d4e0;
+    border-radius: 10px;
+    background-color: #ffffff;
+}
+
+.exercise-box h2 {
+    color: #3f51b5; /* Blau indi */
+    border-bottom: 2px solid #3f51b5;
+    padding-bottom: 15px;
+    margin-top: 0;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* -------------------------------------- */
+/* 2. Estils Llista de Productes */
+/* -------------------------------------- */
+
+.product-list-container h3 {
+    color: #00bcd4;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.product-list {
+    list-style: none;
+    padding: 0;
+}
+
+.product-item {
+    border: 1px solid #e0e0e0;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    overflow: hidden;
+}
+
+.product-item:hover {
+    background-color: #f7f9fc;
+}
+
+.product-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #fcfcfc;
+    font-weight: 600;
+}
+
+.product-name {
+    color: #3f51b5;
+    flex-grow: 1;
+    text-align: left;
+}
+
+.product-price {
+    color: #e91e63;
+    font-weight: bold;
+    margin-right: 15px;
+}
+
+.toggle-icon {
+    font-size: 0.8em;
+    color: #777;
+}
+
+.product-details-content {
+    padding: 15px 20px;
+    background-color: #e3f2fd; /* Blau clar per al fons dels detalls */
+    border-top: 1px dashed #bbdefb;
+    animation: slideDown 0.3s ease-out;
+    text-align: left;
+    font-size: 0.95em;
+    color: #555;
+}
+
+.product-details-content p {
+    margin: 5px 0;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
