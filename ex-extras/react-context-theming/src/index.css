@@ -1,0 +1,111 @@
+/* -------------------------------------- */
+/* 1. Estils Base Global i Contenidors */
+/* -------------------------------------- */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 20px;
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f4f8; 
+    transition: background-color 0.5s;
+}
+
+.exercise-container {
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.exercise-box {
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.exercise-box h2 {
+    color: #00bcd4; /* Turquesa */
+    border-bottom: 3px solid #80deea;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+}
+
+/* -------------------------------------- */
+/* 2. Estils del Panell de Contingut */
+/* -------------------------------------- */
+
+.content-panel {
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.5s;
+    text-align: left;
+}
+
+.content-panel.light {
+    background-color: #ffffff;
+    color: #333;
+    border: 1px solid #e0e0e0;
+}
+
+.content-panel.dark {
+    background-color: #212121;
+    color: #e0e0e0;
+    border: 1px solid #424242;
+}
+
+.content-panel h3 {
+    margin-top: 0;
+    font-size: 1.5em;
+    border-bottom: 1px solid;
+    padding-bottom: 10px;
+}
+
+.content-panel.light h3 { border-color: #ddd; color: #3f51b5; }
+.content-panel.dark h3 { border-color: #424242; color: #80cbc4; }
+
+/* Botó de Toggler */
+.btn-toggle {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: all 0.3s;
+    display: block;
+    width: 100%;
+    font-size: 1em;
+}
+
+.btn-toggle.light-mode {
+    background-color: #66bb6a; /* Verd */
+    color: white;
+}
+.btn-toggle.light-mode:hover { background-color: #43a047; }
+
+.btn-toggle.dark-mode {
+    background-color: #80cbc4; /* Menta Clar */
+    color: #212121;
+}
+.btn-toggle.dark-mode:hover { background-color: #4db6ac; }
+
+.nested-div {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 6px;
+    font-style: italic;
+    font-size: 0.9em;
+}
+
+.content-panel.light .nested-div {
+    background-color: #f3f3f3;
+}
+
+.content-panel.dark .nested-div {
+    background-color: #424242;
+}
