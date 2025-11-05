@@ -1,0 +1,125 @@
+/* -------------------------------------- */
+/* 1. Estils Base Global i Contenidors */
+/* -------------------------------------- */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f4f8;
+    color: #333;
+    padding: 20px;
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.exercise-container {
+    max-width: 550px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    text-align: center;
+}
+
+.exercise-box {
+    padding: 25px;
+}
+
+.exercise-box h2 {
+    color: #3f51b5; /* Blau Indi */
+    border-bottom: 3px solid #3f51b5;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+}
+
+/* -------------------------------------- */
+/* 2. Estils del Comptador */
+/* -------------------------------------- */
+
+.counter-panel {
+    padding: 20px;
+    border: 1px solid #c5cae9;
+    border-radius: 8px;
+    background-color: #fcfdff;
+}
+
+.current-count {
+    font-size: 3em;
+    font-weight: 700;
+    color: #e91e63; /* Rosa */
+    margin-bottom: 25px;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.btn-action {
+    padding: 12px 20px;
+    font-size: 1em;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-positive {
+    background-color: #4caf50; /* Verd */
+    color: white;
+}
+.btn-positive:hover { background-color: #43a047; }
+
+.btn-negative {
+    background-color: #f44336; /* Vermell */
+    color: white;
+}
+.btn-negative:hover { background-color: #d32f2f; }
+
+.btn-reset {
+    background-color: #ff9800; /* Taronja */
+    color: white;
+    width: 80%;
+}
+.btn-reset:hover { background-color: #fb8c00; }
+
+.divider {
+    border: 0;
+    border-top: 1px dashed #ddd;
+    margin: 25px 0;
+}
+
+/* Controls personalitzats */
+.custom-control-group {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.custom-input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    text-align: center;
+}
+
+.btn-custom {
+    background-color: #00bcd4; /* Turquesa */
+    color: white;
+}
+.btn-custom:hover { background-color: #00acc1; }
+
+.note {
+    font-size: 0.9em;
+    color: #777;
+    margin-top: 20px;
+}
