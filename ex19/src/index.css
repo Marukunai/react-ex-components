@@ -1,0 +1,166 @@
+/* -------------------------------------- */
+/* 1. Estils Base Global i Contenidors */
+/* -------------------------------------- */
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #fafafa;
+    color: #262626;
+    padding: 20px;
+    line-height: 1.5;
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.app-title {
+    color: #c13584; /* Color d'Instagram */
+    margin-bottom: 30px;
+}
+
+.post-container {
+    max-width: 470px; /* Amplada estàndard d'un post d'Instagram */
+    width: 100%;
+    background: #fff;
+    border: 1px solid #dbdbdb;
+    border-radius: 3px;
+    margin-bottom: 20px;
+}
+
+/* -------------------------------------- */
+/* 2. Estils per Secció de Post */
+/* -------------------------------------- */
+
+.post-header {
+    display: flex;
+    align-items: center;
+    padding: 14px 16px;
+    border-bottom: 1px solid #efefef;
+}
+
+.profile-pic {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin-right: 14px;
+    object-fit: cover;
+}
+
+.username {
+    font-weight: 600;
+    color: #262626;
+}
+
+.post-image-container {
+    width: 100%;
+    max-height: 470px; 
+    overflow: hidden;
+    background-color: #eee;
+}
+
+.post-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.post-actions {
+    display: flex;
+    padding: 8px 16px;
+    gap: 10px;
+    border-bottom: 1px solid #efefef;
+}
+
+.btn-action {
+    background: none;
+    border: none;
+    font-size: 1.1em;
+    font-weight: 600;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    border-radius: 4px;
+}
+.btn-action:hover {
+    background-color: #f0f0f0;
+}
+.btn-like { color: #ed4956; }
+.btn-comment { color: #262626; }
+
+.post-likes {
+    padding: 0 16px;
+    font-size: 0.9em;
+    font-weight: 500;
+    margin-top: 5px;
+}
+
+.post-comments {
+    padding: 0 16px 14px;
+    font-size: 0.9em;
+}
+
+.comment-item {
+    margin: 3px 0;
+}
+
+.comment-user {
+    font-weight: 600;
+    margin-right: 5px;
+}
+
+.no-comments {
+    color: #8e8e8e;
+    font-style: italic;
+}
+
+
+/* -------------------------------------- */
+/* 3. Estils del Formulari de Comentaris */
+/* -------------------------------------- */
+
+.comment-form-container {
+    padding: 10px 16px 14px;
+    border-top: 1px solid #efefef;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.comment-textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.btn-form-action {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.btn-accept {
+    background-color: #0095f6; /* Blau d'Instagram */
+    color: white;
+}
+.btn-accept:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+.btn-cancel {
+    background-color: #efefef;
+    color: #262626;
+}
