@@ -1,0 +1,131 @@
+/* -------------------------------------- */
+/* 1. Estils Base Global i Contenidors */
+/* -------------------------------------- */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f7f9fb;
+    color: #333;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+.exercise-container {
+    max-width: 550px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.exercise-box {
+    padding: 25px;
+    border: 1px solid #e1e8ed;
+    border-radius: 10px;
+    background-color: #ffffff;
+}
+
+.exercise-box h2 {
+    color: #2c3e50;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 15px;
+    margin-top: 0;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* -------------------------------------- */
+/* 2. Estils Específics del Login Panel */
+/* -------------------------------------- */
+
+.login-panel-container {
+    padding: 20px;
+    text-align: center;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    text-align: left;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.form-group input {
+    padding: 10px;
+    border: 1px solid #bdc3c7;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+/* Botó de Submit del formulari */
+.btn-login-submit {
+    padding: 12px;
+    background-color: #3498db; /* Blau */
+    color: white;
+    font-size: 1.1em;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.btn-login-submit:hover {
+    background-color: #2980b9;
+}
+
+/* Àrea de Benvinguda */
+.welcome-area {
+    padding: 20px;
+    background-color: #e8f6f3; /* Verd/Blau clar */
+    border: 2px solid #1abc9c;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.welcome-message {
+    font-size: 1.5em;
+    color: #2ecc71; /* Verd clar */
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+/* Botó de Tancar Sessió (només visible quan logged in) */
+.btn-main-toggle.btn-logout {
+    padding: 10px 20px;
+    background-color: #e74c3c; /* Vermell */
+    color: white;
+    font-size: 1em;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.btn-main-toggle.btn-logout:hover {
+    background-color: #c0392b;
+}
+
+.divider {
+    border: 0;
+    border-top: 1px dashed #eee;
+    margin: 25px 0;
+}
