@@ -1,0 +1,124 @@
+/* -------------------------------------- */
+/* 1. Estils Base Global i Contenidors */
+/* -------------------------------------- */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f7f9fc;
+    color: #333;
+    padding: 20px;
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.exercise-container {
+    max-width: 550px;
+    width: 100%;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.exercise-box h2 {
+    color: #007bff; /* Blau */
+    border-bottom: 3px solid #b3d9ff;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+}
+
+/* -------------------------------------- */
+/* 2. Estils Específics useRef */
+/* -------------------------------------- */
+
+.useref-container h3 {
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+.input-focus {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    font-size: 1em;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+.input-focus:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.btn-action {
+    flex: 1;
+    padding: 10px;
+    font-size: 1em;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-focus {
+    background-color: #28a745; /* Verd */
+    color: white;
+}
+.btn-focus:hover { background-color: #1e7e34; }
+
+.btn-read {
+    background-color: #ffc107; /* Groc */
+    color: #333;
+}
+.btn-read:hover { background-color: #e0a800; }
+
+hr {
+    border: 0;
+    border-top: 1px dashed #ddd;
+    margin: 30px 0;
+}
+
+/* Demostració de valor mutable */
+.mutable-demo h4 {
+    color: #6c757d;
+}
+
+.mutable-demo p {
+    font-size: 1.1em;
+    margin: 10px 0;
+}
+
+.note-ref {
+    color: #28a745;
+    font-weight: normal;
+    font-style: italic;
+    margin-left: 10px;
+}
+
+.note-state {
+    color: #007bff;
+    font-weight: normal;
+    font-style: italic;
+    margin-left: 10px;
+}
+
+.btn-render {
+    background-color: #6f42c1; /* Lila */
+    color: white;
+    margin-top: 15px;
+    width: 50%;
+}
+.btn-render:hover { background-color: #522f96; }
