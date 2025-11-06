@@ -1,14 +1,17 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { createNewProject } from '../api/projectApi'; 
-import { useProjectContext } from '../context/ProjectContext'; // Importem el hook
+import { useProjectState, useProjectDispatch } from '../context/ProjectContext';
 import Message from '../components/Message';
 
 // El component JA NO REP CAP PROP
 function ProjectForm() {
     
-    // 1. Obtenim 'projects' i 'dispatch' DIRECTAMENT del Context
-    const { projects, dispatch } = useProjectContext(); 
+    // 1. Obtenim 'projects' per la lectura
+    const { projects } = useProjectState(); 
+    
+    // 2. Obtenim 'dispatch' per l'escriptura
+    const dispatch = useProjectDispatch();
     
     const { id } = useParams();
     const isEditMode = !!id;

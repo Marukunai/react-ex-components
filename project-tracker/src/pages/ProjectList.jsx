@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useProjectContext } from '../context/ProjectContext'; // Importem el hook de Context
+import { useProjectState, useProjectDispatch } from '../context/ProjectContext';
 import ProjectCard from '../components/ProjectCard';
 import Message from '../components/Message';
 
@@ -11,13 +11,12 @@ function ProjectList() {
     // 1. Obtenim l'estat i la lògica de fetching DIRECTAMENT del context
     const { 
         projects, 
-        dispatch, 
         isLoadingInitial, 
         errorInitial 
     } = useProjectContext(); 
 
-    // Hem ELIMINAT el useFetch duplicat i l'useEffect de sincronització!
-    // Aquesta lògica es mou al ProjectContext.jsx
+    // 2. Obtenim només el DISPATCH (useProjectDispatch)
+    const dispatch = useProjectDispatch();
 
     // Renderitzat d'estats de la càrrega inicial (ara des del Context)
     if (isLoadingInitial) return <Message type="loading" text="Carregant projectes inicials (via Context)..." />;

@@ -1,14 +1,14 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { useProjectContext } from '../context/ProjectContext'; // Importem el hook
+import { useProjectState } from '../context/ProjectContext';
 import Message from '../components/Message';
 
 // El component JA NO REP CAP PROP
 function ProjectDetail() { 
     const { id } = useParams();
     
-    // 1. Obtenim 'projects' DIRECTAMENT del Context
-    const { projects } = useProjectContext(); 
+    // 1. Obtenim 'projects' DIRECTAMENT de l'estat
+    const { projects } = useProjectState(); 
     
     // Cercar el projecte a l'estat global (Lectura)
     const project = projects.find(p => p.id.toString() === id);
