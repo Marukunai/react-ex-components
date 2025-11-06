@@ -15,6 +15,16 @@ let currentProjectState = {
 // 2. Mocks de funció
 const mockDispatch = vi.fn();
 const mockNavigate = vi.fn();
+const mockStartTransition = vi.fn((callback) => callback());
+
+vi.mock('react', async (importOriginal) => {
+    const actual = await importOriginal();
+    return {
+        ...actual,
+        // Retornem el nostre mock per startTransition, isPending sempre fals
+        useTransition: () => [false, mockStartTransition], 
+    };
+});
 
 // Dades de prova
 const mockProjects = [
@@ -61,6 +71,7 @@ describe('ProjectList', () => {
         setProjectState({ projects: [], isLoadingInitial: false, errorInitial: null });
         mockDispatch.mockClear();
         mockNavigate.mockClear();
+        mockStartTransition.mockClear();
     });
 
     // TEST 1: Càrrega
@@ -128,5 +139,20 @@ describe('ProjectList', () => {
         render(<ProjectList />, { wrapper: MemoryRouter });
         
         expect(screen.getByText(/error en la càrrega: simulated api error/i)).toBeInTheDocument();
+    });
+
+    // TEST 6: useTransition en l'eliminació
+    test('hauria d’embolcallar l’eliminació amb startTransition', () => {
+        // 1. Arrange:
+        setProjectState({ projects: mockProjects, isLoadingInitial: false, errorInitial: null });
+        render(<ProjectList />, { wrapper: MemoryRouter });
+        
+        // 2. Act:
+        const deleteButton = screen.getAllByRole('button', { name: /eliminar/i })[0];
+        fireEvent.click(deleteButton);
+
+        // 3. Assert:
+        // Verifiquem que la nostra funció mock ha estat cridada
+        expect(mockStartTransition).toHaveBeenCalledTimes(1);
     });
 });
