@@ -5,8 +5,8 @@ import React, {
     useEffect,
     useMemo
 } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { projectReducer } from '../reducer/projectReducer';
-import { useFetch } from '../hooks/useFetch';
 
 const API_PROJECTS_URL = 'https://jsonplaceholder.typicode.com/posts?_limit=20';
 
@@ -46,42 +46,56 @@ export const useProjectDispatch = () => {
 // 2. Component Provider (Conté la Lògica i exposa els dos valors)
 export function ProjectProvider({ children }) {
     
-    // A. Lògica d'Estat i Fetching (Idèntica a l'anterior)
     const [projects, dispatch] = useReducer(projectReducer, []);
+    
+    // 3. Lògica de Fetching amb React Query: useQuery
     const { 
         data: initialData, 
         isLoading: isLoadingInitial, 
+        isError: isErrorInitial, // Utilitzem isError de RQ
         error: errorInitial 
-    } = useFetch(API_PROJECTS_URL);
+    } = useQuery({
+        // Clau única per a la cache. Si les dades del context canvien, no és necessari tornar-ho a carregar.
+        queryKey: ['initialProjects'], 
+        // Funció per obtenir les dades (retorna una Promise)
+        queryFn: async () => {
+             const response = await fetch(API_PROJECTS_URL);
+             if (!response.ok) throw new Error('Error al carregar les dades de l’API.');
+             return response.json();
+        },
+        // Opcions: Només executar la query una vegada.
+        staleTime: Infinity, // Marcar les dades com a "fresques" indefinidament.
+        refetchOnWindowFocus: false, // Opcionalment desactivem el refetch automàtic.
+    });
 
-    // C. Sincronització: (Idèntica a l'anterior)
-    useEffect(() => {
-        if (initialData && projects.length === 0) {
-            console.log("Context: Sincronitzant dades inicials de l'API a l'Estat Global.");
+
+    // 4. Sincronització: UseEffect (NOMÉS per a la càrrega inicial)
+    // Utilitzem un missatge de dispatch CONDICIONAL per establir l'estat useReducer un cop.
+    React.useEffect(() => {
+        if (initialData && projects.length === 0) { 
+            console.log("RQ: Dades rebudes. Sincronitzant a l'Estat Global (useReducer).");
+
             const normalizedData = initialData.map(item => ({
                 id: item.id,
                 title: item.title.substring(0, 30),
                 description: item.body.substring(0, 100) + '...',
                 status: item.id % 3 === 0 ? 'Completat' : (item.id % 2 === 0 ? 'En Progrés' : 'Pendent'),
             }));
+            
+            // Dispatch inicial
             dispatch({ type: 'SET_PROJECTS', payload: normalizedData });
         }
-    }, [initialData, projects.length]);
+    }, [initialData, projects.length, dispatch]); // Afegim dispatch a les dependencies
 
-
-    // 3. Valor de l'ESTAT (useMemo per evitar re-creació innecessària de l'objecte)
     const stateValue = useMemo(() => ({
         projects,
         isLoadingInitial,
         errorInitial,
-    }), [projects, isLoadingInitial, errorInitial]);
+        isErrorInitial // Incloem isErrorInitial de React Query
+    }), [projects, isLoadingInitial, errorInitial, isErrorInitial]);
 
-
-    // 4. Retorn del Provider amb els dos Contexts imbricats
     return (
-        // El Dispatch NO canvia mai, així que es dóna una sola vegada
         <ProjectDispatchContext.Provider value={dispatch}> 
-            {/* L'Estat canvia amb cada actualització de projects */}
             <ProjectStateContext.Provider value={stateValue}>
                 {children}
             </ProjectStateContext.Provider>

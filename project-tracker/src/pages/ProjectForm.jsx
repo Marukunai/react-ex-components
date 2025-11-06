@@ -1,16 +1,16 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { createNewProject } from '../api/projectApi'; 
 import { useProjectState, useProjectDispatch } from '../context/ProjectContext';
 import Message from '../components/Message';
 
-// El component JA NO REP CAP PROP
 function ProjectForm() {
     
-    // 1. Obtenim 'projects' per la lectura
+    // 1. Lectura de l'Estat Global (Projecte a editar)
     const { projects } = useProjectState(); 
     
-    // 2. Obtenim 'dispatch' per l'escriptura
+    // 2. Escriptura de l'Estat Global (dispatch per afegir/editar)
     const dispatch = useProjectDispatch();
     
     const { id } = useParams();
@@ -20,19 +20,38 @@ function ProjectForm() {
     // Trobar el projecte a l'estat global
     const projectToEdit = isEditMode ? projects.find(p => p.id.toString() === id) : null;
     
-    // [Resta del component és idèntic, ja que utilitza 'dispatch' i 'projectToEdit' correctament]
-    
+    // Lògica de l'Estat Local del Formulari
     const [formData, setFormData] = useState({
         title: projectToEdit?.title || '',
         description: projectToEdit?.description || '',
         status: projectToEdit?.status || 'Pendent',
     });
-    const [formLoading, setFormLoading] = useState(false);
+    
+    // Inicialitzem useQueryClient (encara que aquí no l'utilitzem per invalidar, és bona pràctica)
+    const queryClient = useQueryClient();
 
-    // useRef per enfocar
+    // 3. Mutació de React Query per a la CREACIÓ (l'acció asíncrona)
+    const createProjectMutation = useMutation({
+        mutationFn: createNewProject, // La funció API asíncrona
+        onSuccess: (newProject) => {
+            console.log("RQ Mutation: Projecte creat amb èxit. Actualitzant useReducer.");
+            
+            // Un cop la crida API és exitosa, actualitzem l'estat useReducer
+            dispatch({ type: 'ADD_PROJECT', payload: newProject }); 
+
+            navigate('/'); // Redirigir després de l'èxit
+        },
+        onError: (error) => {
+             console.error("RQ Mutation Error:", error);
+             // Aquí podríem mostrar un missatge d'error a l'usuari
+        }
+    });
+
+    // Usem l'estat de la mutació per controlar la càrrega
+    const formLoading = createProjectMutation.isPending; 
+    
     const titleRef = useRef(null);
 
-    // Enfocament
     useEffect(() => {
         titleRef.current.focus();
     }, []);
@@ -43,26 +62,20 @@ function ProjectForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setFormLoading(true);
-
+        
         if (isEditMode) {
-            // CRUD: UPDATE (Utilitza el dispatch del context)
+            // CRUD: UPDATE (Acció Síncrona) - Directament a useReducer, ja que simulem l'èxit de l'API.
             dispatch({ 
                 type: 'UPDATE_PROJECT', 
                 payload: { id: projectToEdit.id, updates: formData } 
             });
             console.log(`Context: Projecte ${id} actualitzat a l'estat global.`);
-
+            navigate('/');
         } else {
-            // CRUD: CREATE (Utilitza el dispatch del context)
-            const newProject = await createNewProject(formData);
-            dispatch({ type: 'ADD_PROJECT', payload: newProject }); 
-
-            console.log("Context: Nou projecte creat i afegit a l'estat global.");
+            // CRUD: CREATE (Acció Asíncrona) - Deleguem a useMutation
+            // El mutate cridarà a createNewProject(formData) i gestionarà l'estat de càrrega.
+            createProjectMutation.mutate(formData);
         }
-        
-        setFormLoading(false);
-        navigate('/');
     };
     
     if (isEditMode && !projectToEdit) {
@@ -73,10 +86,13 @@ function ProjectForm() {
         <div className="project-form-container">
             <h3>{isEditMode ? '🖊️ Editar Projecte' : '➕ Nou Projecte'}</h3>
             
-            {formLoading && <Message type="loading" text="Enviant dades..." />}
+            {/* Utilitzem l'estat isPending de React Query */}
+            {formLoading && <Message type="loading" text="Enviant dades (via React Query)..." />}
+            {createProjectMutation.isError && <Message type="error" text="Error en crear el projecte! Torna-ho a intentar." />}
 
             <form onSubmit={handleSubmit} className="project-form">
                 
+                {/* ... (camps del formulari) ... */}
                 <label>Títol del Projecte</label>
                 <input
                     type="text"
@@ -109,7 +125,7 @@ function ProjectForm() {
                 <button 
                     type="submit" 
                     className={`btn-submit ${isEditMode ? 'btn-update' : 'btn-create'}`}
-                    disabled={formLoading}
+                    disabled={formLoading} // Controlat per useMutation.isPending
                 >
                     {isEditMode ? 'Actualitzar Projecte' : 'Crear Projecte'}
                 </button>
