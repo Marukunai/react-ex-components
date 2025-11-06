@@ -1,14 +1,19 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { useProjectContext } from '../context/ProjectContext'; // Importem el hook
 import Message from '../components/Message';
 
-function ProjectDetail({ projects }) { // Rep l'estat global com a prop
+// El component JA NO REP CAP PROP
+function ProjectDetail() { 
     const { id } = useParams();
     
-    // 1. Cercar el projecte a l'estat global (Lectura)
+    // 1. Obtenim 'projects' DIRECTAMENT del Context
+    const { projects } = useProjectContext(); 
+    
+    // Cercar el projecte a l'estat global (Lectura)
     const project = projects.find(p => p.id.toString() === id);
 
-    if (!project) return <Message type="error" text={`Projecte amb ID ${id} no trobat a l'estat local.`} />;
+    if (!project) return <Message type="error" text={`Projecte amb ID ${id} no trobat a l'estat global.`} />;
 
     return (
         <div className="project-detail-view">

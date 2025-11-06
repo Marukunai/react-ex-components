@@ -1,18 +1,24 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { createNewProject } from '../api/projectApi'; 
+import { useProjectContext } from '../context/ProjectContext'; // Importem el hook
 import Message from '../components/Message';
 
-// El component rep els projectes (per editar) i el dispatch (per actualitzar)
-function ProjectForm({ projects, dispatch }) {
+// El component JA NO REP CAP PROP
+function ProjectForm() {
+    
+    // 1. Obtenim 'projects' i 'dispatch' DIRECTAMENT del Context
+    const { projects, dispatch } = useProjectContext(); 
+    
     const { id } = useParams();
     const isEditMode = !!id;
     const navigate = useNavigate();
     
-    // Trobar el projecte si estem en mode edició
+    // Trobar el projecte a l'estat global
     const projectToEdit = isEditMode ? projects.find(p => p.id.toString() === id) : null;
     
-    // Estat del formulari amb dades inicials
+    // [Resta del component és idèntic, ja que utilitza 'dispatch' i 'projectToEdit' correctament]
+    
     const [formData, setFormData] = useState({
         title: projectToEdit?.title || '',
         description: projectToEdit?.description || '',
@@ -37,28 +43,23 @@ function ProjectForm({ projects, dispatch }) {
         setFormLoading(true);
 
         if (isEditMode) {
-            // CRUD: UPDATE
-            // SIMULACIÓ API
-            
-            // Actualització de l'estat amb useReducer
+            // CRUD: UPDATE (Utilitza el dispatch del context)
             dispatch({ 
                 type: 'UPDATE_PROJECT', 
                 payload: { id: projectToEdit.id, updates: formData } 
             });
-            console.log(`CRUD: Projecte ${id} actualitzat localment.`);
+            console.log(`Context: Projecte ${id} actualitzat a l'estat global.`);
 
         } else {
-            // CRUD: CREATE
-            const newProject = await createNewProject(formData); // Crida a l'API (simulada)
-            
-            // Actualització de l'estat amb useReducer
+            // CRUD: CREATE (Utilitza el dispatch del context)
+            const newProject = await createNewProject(formData);
             dispatch({ type: 'ADD_PROJECT', payload: newProject }); 
 
-            console.log("CRUD: Nou projecte creat i afegit localment.");
+            console.log("Context: Nou projecte creat i afegit a l'estat global.");
         }
         
         setFormLoading(false);
-        navigate('/'); // Tornar a la llista
+        navigate('/');
     };
     
     if (isEditMode && !projectToEdit) {
