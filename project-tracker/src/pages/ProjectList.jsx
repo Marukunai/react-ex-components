@@ -13,7 +13,7 @@ function ProjectList() {
         projects, 
         isLoadingInitial, 
         errorInitial 
-    } = useProjectContext(); 
+    } = useProjectState(); 
 
     // 2. Obtenim només el DISPATCH (useProjectDispatch)
     const dispatch = useProjectDispatch();
