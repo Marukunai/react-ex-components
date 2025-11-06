@@ -93,8 +93,10 @@ function ProjectForm() {
             <form onSubmit={handleSubmit} className="project-form">
                 
                 {/* ... (camps del formulari) ... */}
-                <label>Títol del Projecte</label>
+                {/* CORRECCIÓ 1: Títol - Afegim htmlFor i id */}
+                <label htmlFor="title">Títol del Projecte</label>
                 <input
+                    id="title"
                     type="text"
                     name="title"
                     value={formData.title}
@@ -103,8 +105,10 @@ function ProjectForm() {
                     required
                 />
                 
-                <label>Descripció</label>
+                {/* CORRECCIÓ 2: Descripció - Afegim htmlFor i id */}
+                <label htmlFor="description">Descripció</label>
                 <textarea
+                    id="description"
                     name="description"
                     value={formData.description}
                     onChange={handleChange}
@@ -113,8 +117,14 @@ function ProjectForm() {
                 
                 {isEditMode && (
                     <>
-                        <label>Estat</label>
-                        <select name="status" value={formData.status} onChange={handleChange}>
+                        {/* CORRECCIÓ 3: Estat - Afegim htmlFor i id */}
+                        <label htmlFor="status">Estat</label>
+                        <select 
+                            id= "status"
+                            name="status" 
+                            value={formData.status} 
+                            onChange={handleChange}
+                        >
                             <option value="Pendent">Pendent</option>
                             <option value="En Progrés">En Progrés</option>
                             <option value="Completat">Completat</option>
