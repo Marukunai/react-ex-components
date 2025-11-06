@@ -1,16 +1,55 @@
-# React + Vite
+# 📌 React useRef: Interacció amb el DOM i Valors Mutables
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aquest projecte demostra les dues utilitzacions fonamentals del hook **`useRef`**: obtenir una referència directa a un **element del DOM** (per manipular-lo, per exemple, amb `focus()`) i emmagatzemar un **valor mutable** que ha de persistir entre re-renderitzacions sense provocar-les.
 
-Currently, two official plugins are available:
+## ⚙️ Configuració i Execució
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Instal·lació
 
-## React Compiler
+1.  Instal·la les dependències:
+    ```bash
+    npm install
+    ```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Comandes Disponibles
 
-## Expanding the ESLint configuration
+| Comanda | Descripció |
+| :--- | :--- |
+| `npm run dev` | Inicia el servidor de desenvolupament local (Obre la **Consola** per veure el comptador intern). |
+| `npm run build` | Construeix el projecte per a producció. |
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+***
+
+## 🧠 Arquitectura: El Doble Ús de `useRef`
+
+El component **`AutoFocusInput.jsx`** il·lustra perfectament per què `useRef` és diferent de `useState`.
+
+### 1. 🎯 Referència a Elements del DOM (`inputRef`)
+
+* **Creació:** Es declara `const inputRef = useRef(null);`.
+* **Connexió:** Es connecta a l'element d'entrada amb l'atribut **`ref={inputRef}`**.
+* **Accés:** Es crida al mètode **`inputRef.current.focus()`** dins de `useEffect` per donar focus automàtic al muntatge, i dins de `handleFocusClick` per enfocar manualment.
+* **Lectura Directa:** La funció `handleReadValue` demostra com llegir el valor actual de l'input amb **`inputRef.current.value`** sense haver de mantenir l'estat sincronitzat amb `useState`.
+
+### 2. ⏳ Valor Mutable i Persistent (`focusCountRef`)
+
+* **Creació:** Es declara `const focusCountRef = useRef(0);`.
+* **Mutació:** El valor es canvia directament amb **`focusCountRef.current = ...`** a la funció `handleFocusClick`.
+* **Diferència Clau amb `useState`:**
+    * Quan `focusCountRef.current` es modifica, **el component NO es re-renderitza**.
+    * Si s'utilitza la funció `handleForceRender` (que crida `setRenderCount`), el component es re-renderitza, però el valor de `focusCountRef.current` **es manté persistent** des de l'última modificació, a diferència d'una variable normal que es reiniciaria.
+
+| Característica | `useState` | `useRef` |
+| :--- | :--- | :--- |
+| **Persistència** | Sí | Sí |
+| **Notifica Canvis (Re-render)** | Sí | **No** |
+| **Lectura/Escriptura** | Amb `set...` | Directament amb `.current` |
+| **Ús Típic** | Dades mostrades a la UI | Referència al DOM, temporitzadors, comptadors interns. |
+
+***
+
+## 📝 Demostració de Cicle de Vida
+
+1.  **Muntatge:** S'executa `useEffect`, el `input` rep el **focus automàtic**.
+2.  **Clic a "Enfocar l'Input":** S'executa `handleFocusClick`. El comptador intern de `focusCountRef` s'incrementa, però el text al DOM (el valor de `focusCountRef.current`) **NO s'actualitza** fins que el component es re-renderitza per un altre motiu.
+3.  **Clic a "Forçar Render":** `setRenderCount` s'activa. El component es re-renderitza, i ara el DOM mostra el valor actualitzat de `focusCountRef.current`.

@@ -1,16 +1,64 @@
-# React + Vite
+# 📡 React Fetching Data: Càrrega Asíncrona amb `useEffect`
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aquest projecte demostra el patró canònic per a la càrrega de dades asíncrones (`fetch` / `async-await`) dins d'un component de React utilitzant el hook **`useEffect`**. L'exercici se centra en la correcta gestió de la **màquina d'estat asíncrona** (carregant, dades, error) i la implementació de la **funció de neteja (*cleanup*)** per evitar problemes de rendiment.
 
-Currently, two official plugins are available:
+## ⚙️ Configuració i Execució
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Instal·lació
 
-## React Compiler
+1.  Instal·la les dependències:
+    ```bash
+    npm install
+    ```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Comandes Disponibles
 
-## Expanding the ESLint configuration
+| Comanda | Descripció |
+| :--- | :--- |
+| `npm run dev` | Inicia el servidor de desenvolupament local. |
+| `npm run build` | Construeix el projecte per a producció. |
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+***
+
+## 🧠 Arquitectura: Cicle de Vida de la Petició
+
+El component **`UserListFetcher.jsx`** concentra tota la lògica d'obtenció de dades, seguint un model d'estat de tres vies.
+
+### 1. Màquina d'Estat Asíncrona
+
+El component utilitza tres estats independents per reflectir l'estat actual de la petició HTTP:
+
+| Estat | Hook | Propòsit |
+| :--- | :--- | :--- |
+| `users` | `useState([])` | Emmagatzema les dades (la llista d'usuaris). |
+| `isLoading` | `useState(true)` | Indica si la petició està activa (`true` mentre s'espera la resposta). |
+| `error` | `useState(null)` | Conté un missatge si la petició falla (error de xarxa o de resposta HTTP). |
+
+Aquesta separació permet un **Renderitzat Condicional** molt clar i lògic a la part de `return` del component.
+
+### 2. Implementació de la Lògica Asíncrona
+
+Tota la lògica de `fetch` està continguda dins d'una funció asíncrona (`fetchUsers`) cridada des de **`useEffect`**.
+
+* **Dependències:** L'array de dependències del `useEffect` és **buit** (`[]`), garantint que la funció `fetchUsers` s'executa **només un cop**, al muntatge inicial del component.
+
+### 3. Funció de Neteja i Cancel·lació (Pràctica Avançada)
+
+Aquesta és la part més important per a la robustesa de l'aplicació:
+
+* **Problema a Resoldre:** Si l'usuari navega a una altra pàgina i el component es desmunta abans que la petició `fetch` hagi acabat, el codi intentaria cridar `setUsers` (o `setIsLoading`) en un component que ja no existeix, causant una **fuita de memòria (*memory leak*)**.
+* **Solució Implementada:**
+    1.  Es declara una bandera **`let isCancelled = false;`**.
+    2.  La funció de neteja de `useEffect` (`return () => { isCancelled = true; }`) s'executa al desmuntar el component.
+    3.  Totes les crides a `set*State` estan protegides amb un condicional: `if (!isCancelled) { setUsers(data); }`.
+
+Aquesta estratègia garanteix que el codi segueix sent segur fins i tot sota condicions de navegació ràpida.
+
+***
+
+## 🚀 Flux del Component (`UserListFetcher.jsx`)
+
+1.  **Muntatge:** S'inicialitza `isLoading` a `true`. S'inicia `fetchUsers` mitjançant `useEffect`.
+2.  **Renderitzat Inicial:** El component mostra el missatge de **Càrrega** (`isLoading` és `true`).
+3.  **Dades Receptades:** Si la petició té èxit, `setUsers(data)` i `setIsLoading(false)` s'executen. El component es torna a renderitzar per mostrar la **Llista d'Usuaris**.
+4.  **Error:** Si hi ha un error HTTP o de xarxa, `setError(err)` i `setIsLoading(false)` s'executen. El component mostra el missatge d'**Error**.
