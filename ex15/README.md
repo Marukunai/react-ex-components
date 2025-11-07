@@ -1,16 +1,65 @@
-# React + Vite
+# 🔑 Exercici 15: Panell d'Inici de Sessió (Renderitzat Ternari)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aquest projecte demostra una aplicació complexa i habitual del Renderitzat Condicional: canviar completament la interfície d'usuari (UI) en funció d'un estat booleà, utilitzant l'operador ternari (`? :`).
 
-Currently, two official plugins are available:
+L'objectiu principal és:
+1.  Controlar els inputs del formulari.
+2.  Utilitzar l'estat booleà `isLoggedIn` per alternar entre dues vistes completes: **Formulari de Login** i **Panell de Benvinguda**.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ⚙️ Configuració i Execució
 
-## React Compiler
+### Instal·lació
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1.  Instal·la les dependències:
+    ```bash
+    npm install
+    ```
 
-## Expanding the ESLint configuration
+### Comandes Disponibles
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+| Comanda | Descripció |
+| :--- | :--- |
+| `npm run dev` | Inicia el servidor de desenvolupament local. |
+| `npm run build` | Construeix el projecte per a producció. |
+
+***
+
+## 🧠 Lògica de Login i Renderitzat
+
+El component `LoginPanel` utilitza dos estats per gestionar la seva lògica interna.
+
+### 1. Estats Clau
+
+* **`isLoggedIn` (Booleà):** Controla l'estat de la sessió i el canvi de UI.
+* **`credentials` (Objecte):** Emmagatzema les dades del formulari (`username`, `password`) de manera centralitzada (Formulari Controlat).
+
+### 2. Lògica del `handleLoginToggle`
+
+Aquesta funció és polivalent, ja que s'utilitza tant per **iniciar sessió** (a través de `form onSubmit`) com per **tancar sessió** (a través de `button onClick`).
+
+* **Login (Quan `isLoggedIn` és `false`):**
+    * Comprova si els camps estan plens (simulació de validació).
+    * Si estan plens, crida **`setIsLoggedIn(true)`**.
+* **Logout (Quan `isLoggedIn` és `true`):**
+    * Crida **`setIsLoggedIn(false)`**.
+    * Neteja les dades del formulari amb `setCredentials`.
+
+### 3. Renderitzat A/B amb l'Operador Ternari
+
+El nucli d'aquest exercici és la utilització del ternari per escollir entre el bloc de **Benvinguda** o el bloc de **Formulari**:
+
+```jsx
+{isLoggedIn ? (
+    // 🅰️ VISTA DE BENINGUDA (Si isLogggedIn és true)
+    <div className="welcome-area">...</div>
+) : (
+    // 🅱️ VISTA DE FORMULARI (Si isLogggedIn és false)
+    <form onSubmit={handleLoginToggle} className="login-form">...</form>
+)}
+```
+
+Això garanteix que només una de les dues seccions principals és visible al DOM en qualsevol moment, creant una experiència d'usuari coherent amb l'estat de la sessió.
+
+### 4. Inputs Controlats
+
+Els camps d'usuari i contrasenya estan controlats per la funció `handleInputChange`, que actualitza l'objecte `credentials` mantenint el component com a única font de veritat de les dades.

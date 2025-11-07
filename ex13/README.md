@@ -1,16 +1,60 @@
-# React + Vite
+# 👂 Exercici 13: `useEffect` amb Dependències (Sincronització de Dades)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aquest projecte il·lustra l'ús de l'**Array de Dependències** dins del hook `useEffect` per sincronitzar un efecte secundari amb canvis específics a les *props* o a l'estat.
 
-Currently, two official plugins are available:
+L'objectiu principal és veure que l'efecte dins de `UserProfile` només s'executarà si el `nom` o l'`edat` rebuts (les dependències) canvien el seu valor respecte al renderitzat anterior.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ⚙️ Configuració i Execució
 
-## React Compiler
+### Instal·lació
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1.  Instal·la les dependències:
+    ```bash
+    npm install
+    ```
 
-## Expanding the ESLint configuration
+### Comandes Disponibles
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+| Comanda | Descripció |
+| :--- | :--- |
+| `npm run dev` | Inicia el servidor de desenvolupament local. |
+| `npm run build` | Construeix el projecte per a producció. |
+
+***
+
+## 🧠 El Control de la Re-execució
+
+La lògica es divideix en la gestió de l'estat de l'aplicació (`App.jsx`) i la reacció a les dades (`UserProfile.jsx`).
+
+### 1. Gestió d'Estat (`App.jsx`)
+
+El component pare (`App`) utilitza un doble estat per simular un cicle d'edició:
+
+* **`formData`:** Estat temporal per als inputs controlats. S'actualitza amb cada tecleig (`handleChange`).
+* **`profileData`:** Estat que realment es passa com a *prop* al component `UserProfile`. Només s'actualitza quan l'usuari prem **"Actualitzar Perfil"** (`handleSubmit`).
+
+Aquesta separació és clau: **Escrivint als inputs NO es dispara l'efecte**, ja que només actualitza `formData`. L'efecte només es dispara quan **`profileData`** (que és l'origen de les *props*) és modificat.
+
+### 2. Array de Dependències Clau (`UserProfile.jsx`)
+
+El component fill utilitza les *props* que li interessen per a l'efecte, el qual fa dues accions (fer un `console.log` i canviar el títol de la pàgina):
+
+```javascript
+// A UserProfile.jsx
+useEffect(() => {
+    // Aquest codi s'executa només si...
+    console.log(`[LOG] Dades del perfil actualitzades: ${nom}, ${edat} anys.`);
+    document.title = `Perfil: ${nom} (${edat})`;
+    
+}, [nom, edat]); // ...'nom' o 'edat' han canviat.
+```
+
+#### Comportament Observat
+
+1. **Muntatge Inicial**: L'efecte s'executa una vegada amb les dades inicials (`Marc`, `30`).
+
+2. **Tecleig**: El tecleig actualitza `formData` i fa re-renderitzar `App` i `UserProfile`, però **l'efecte NO s'executa**, ja que `profileData` (`nom` i `edat`) no ha canviat.
+
+3. **Clic a "Actualitzar"**: En aquest moment, `setProfileData(formData)` canvia el valor de les *props* `nom` i/o `edat`. React detecta el canvi en l'array de dependències i **re-executa l'efecte**.
+
+Això demostra com `useEffect` permet controlar amb precisió quan s'han d'executar els efectes secundaris complexos.

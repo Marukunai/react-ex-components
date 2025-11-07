@@ -1,16 +1,71 @@
-# React + Vite
+# ❤️ Exercici 19: Interacció amb una Publicació (Gestió d'Estats Complexos)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aquest projecte implementa un component de publicació social amb les funcions bàsiques: fer *Like* i afegir *Comentaris*. Aquest exercici consolida l'ús de `useState` per a estats simples (comptador i booleà) i estats complexos (arrays).
 
-Currently, two official plugins are available:
+## 🎯 Objectius Clau
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1.  **Gestió de Múltiples Estats:** Controlar el comptador de **`likes`**, l'estat booleà **`isLiked`** i l'array de **`comentaris`** des d'un sol component pare (`Post.jsx`).
+2.  **Toggle de Botó:** Implementar la lògica de **Toggle** per al botó de Like (incrementar/decrement el comptador i canviar el seu aspecte).
+3.  **Formulari Controlat:** Utilitzar l'estat `nouComentari` per controlar l'input de text i la funció `addComment` per actualitzar l'array amb immutabilitat.
+4.  **Components "Presents":** Els components fills (`PostActions`, `PostComments`, etc.) són components "presents" (o purament de vista) que reben dades i *callbacks* com a *props*.
 
-## React Compiler
+## ⚙️ Configuració i Execució
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Instal·lació
 
-## Expanding the ESLint configuration
+1.  Instal·la les dependències:
+    ```bash
+    npm install
+    ```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Comandes Disponibles
+
+| Comanda | Descripció |
+| :--- | :--- |
+| `npm run dev` | Inicia el servidor de desenvolupament local. |
+| `npm run build` | Construeix el projecte per a producció. |
+
+***
+
+## 🧠 Lògica i Estructura
+
+### 1. Lògica del Botó "Like" (`Post.jsx` & `PostActions.jsx`)
+
+Per implementar el *toggle* correcte del Like, es necessiten dos estats al component `Post`:
+
+| Estat | Propòsit |
+| :--- | :--- |
+| `likes` | El nombre total de "m'agrades" (valor numèric). |
+| `isLiked` | Indica si l'usuari actual ha donat "m'agrada" (valor booleà). |
+
+La funció **`handleLike`** utilitza `isLiked` per decidir si suma o resta al comptador `likes`:
+
+```javascript
+// A Post.jsx
+const handleLike = () => {
+    if (isLiked) {
+        setLikes(prevLikes => prevLikes - 1); 
+        setIsLiked(false);
+    } else {
+        setLikes(prevLikes => prevLikes + 1); 
+        setIsLiked(true);
+    }
+};
+```
+
+El component `PostActions` utilitza la prop isLiked per canviar dinàmicament el text i l'estil del botó.
+
+### 2. Afegir Comentaris (Array Immutabilitat)
+
+La funció `addComment` demostra la forma correcta d'actualitzar un array d'estat a React: creant un nou array i afegint-hi el nou ítem, respectant la immutabilitat.
+
+```javascript
+// A Post.jsx
+setComentaris(prevComentaris => [...prevComentaris, newComment]);
+```
+
+A més, el formulari (`CommentForm`) es mostra amb **Renderitzat Condicional** basat en l'estat `isCommenting`.
+
+### 3. Components del Formulari
+
+El component `CommentForm` és un exemple clàssic de **Lifting State Up**: rep el valor (`nouComentari`) i tots els *handlers* (`onCommentChange`, `onCommentSubmit`, `onCommentCancel`) com a *props* des del component pare (`Post.jsx`).

@@ -1,16 +1,70 @@
-# React + Vite
+# 📡 Exercici 18: Indicador de Connexió (`useEffect` i Subscripcions)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aquest projecte implementa un indicador de l'estat de la connexió a Internet en temps real. Il·lustra com utilitzar el hook **`useEffect`** per afegir i eliminar **EventListeners** a l'objecte global `window`, un patró estàndard per sincronitzar components de React amb APIs externes al navegador.
 
-Currently, two official plugins are available:
+L'objectiu principal és:
+1.  Utilitzar `navigator.onLine` per obtenir l'estat inicial.
+2.  Subscriure's als esdeveniments `online` i `offline` de l'objecte `window`.
+3.  Implementar la funció de **neteja (`cleanup`)** per treure els `EventListeners` en el desmuntatge.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ⚙️ Configuració i Execució
 
-## React Compiler
+### Instal·lació
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1.  Instal·la les dependències:
+    ```bash
+    npm install
+    ```
 
-## Expanding the ESLint configuration
+### Comandes Disponibles
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+| Comanda | Descripció |
+| :--- | :--- |
+| `npm run dev` | Inicia el servidor de desenvolupament local. |
+| `npm run build` | Construeix el projecte per a producció. |
+
+***
+
+## 🧠 Subscripció a Esdeveniments del Navegador
+
+El component `ConnectionStatus` basa el seu funcionament en la interacció amb l'API del navegador.
+
+### 1. Estat Inicial
+
+L'estat s'inicialitza directament utilitzant l'API **`navigator.onLine`**, assegurant que la UI reflecteixi l'estat actual tan bon punt es carrega el component:
+
+```javascript
+const [isOnline, setIsOnline] = useState(navigator.onLine);
+```
+
+### 2. El Cicle de l'Efecte
+
+El hook `useEffect` s'utilitza amb un array de dependències buit (`[]`), cosa que garanteix que la subscripció (l'efecte) i la desubscripció (la neteja) només es produeixin una vegada, durant el cicle de vida del component.
+
+- **Subscripció** (`Mount`): Afegim els `EventListeners` a l'objecte global `window`:
+
+```javascript
+window.addEventListener('online', handleStatusChange);
+window.addEventListener('offline', handleStatusChange);
+```
+
+- **Neteja** (`Unmount`): La funció de retorn (`cleanup`) assegura que els *listeners* s'eliminen quan el component desapareix, evitant que el codi s'intenti executar en components que ja no existeixen (fuita de memòria).
+
+```javascript
+return () => {
+    window.removeEventListener('online', handleStatusChange);
+    window.removeEventListener('offline', handleStatusChange);
+};
+```
+
+### 3. Funció Callback
+
+La funció `handleStatusChange` és el *callback* que s'executa quan el navegador detecta un canvi en la connexió. L'única cosa que fa és actualitzar l'estat `isOnline` de React amb el nou valor de `navigator.onLine`, forçant una re-renderització:
+
+```javascript
+const handleStatusChange = () => {
+    setIsOnline(navigator.onLine); 
+};
+```
+
+Quan l'estat canvia, la UI es re-renderitza per mostrar el nou text i color d'indicador.
