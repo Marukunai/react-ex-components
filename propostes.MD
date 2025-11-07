@@ -8,7 +8,7 @@ Aquests exercicis estan dissenyats per ser construïts des de zero, basant-se en
 
 ### 1. 💳 Component de Targeta de Crèdit (Props)
 
-Creeu un component anomenat `CreditCard` que rebi les següents props: `ownerName`, `cardNumber`, `expiryDate` i `type` (Visa o MasterCard).
+Creeu un component anomenat `CreditCard` que rebi les següents props: `ownerName`, `cardNumber`, `expiryDate` i `type` (Visa / MasterCard).
 
 **Objectiu 1:** Formateja el `cardNumber` per mostrar-lo en blocs de quatre dígits separats per espais.
 
