@@ -1,16 +1,66 @@
-# React + Vite
+# ❤️ Exercici 8: Comptador de Likes (`useState`)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aquest projecte il·lustra l'ús del hook **`useState`** per a crear un component interactiu clàssic: un botó "M'agrada" que gestiona un estat *toggle* (activat/desactivat) i actualitza un comptador numèric.
 
-Currently, two official plugins are available:
+L'objectiu principal és mostrar com la modificació de l'estat amb la funció `set...` provoca una **re-renderització automàtica** del component amb els nous valors.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ⚙️ Configuració i Execució
 
-## React Compiler
+### Instal·lació
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1.  Instal·la les dependències:
+    ```bash
+    npm install
+    ```
 
-## Expanding the ESLint configuration
+### Comandes Disponibles
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+| Comanda | Descripció |
+| :--- | :--- |
+| `npm run dev` | Inicia el servidor de desenvolupament local. |
+| `npm run build` | Construeix el projecte per a producció. |
+
+***
+
+## 🧠 Lògica de l'Estat Amb `useState`
+
+El component `LikeCounter` utilitza **dos estats independents** per controlar tota la seva lògica i aparença.
+
+### 1. Declaració de l'Estat
+
+```javascript
+// 1. Estat numèric (el comptador)
+const [likes, setLikes] = useState(0);
+
+// 2. Estat booleà (l'estat del botó: activat o desactivat)
+const [isLiked, setIsLiked] = useState(false);
+```
+
+### 2. Funció de Gestió del Clic (`handleLikeClick`)
+
+La lògica central resideix en aquesta funció, que utilitza l'estat booleà actual (`isLiked`) per decidir com actualitzar els dos estats:
+
+| Estat Actual (`isLiked`) | Acció Sol·licitada | Funció d'Estat Cridada |
+| :--- | :--- | :--- |
+| `true` (Ja li agrada) | Desactivar "M'agrada" | `setLikes(likes - 1)` i `setIsLiked(false)` |
+| `false` (No li agrada) | Activar "M'agrada" | `setLikes(likes + 1)` i `setIsLiked(true)` |
+
+**Nota important**: Cada crida a `setLikes` o `setIsLiked` activa un nou cicle de re-renderització, on el component es torna a executar amb els nous valors de `likes` i `isLiked`.
+
+### 3. Renderitzat Condicional de la UI
+
+La interfície d'usuari es basa completament en el valor de l'estat `isLiked`:
+
+- **Classes CSS**: La classe del botó (`buttonClass`) es determina dinàmicament per canviar l'estil (color, fons):
+
+```javascript
+const buttonClass = isLiked ? 'btn-like btn-liked' : 'btn-like btn-not-liked';
+```
+
+- **Text del Botó**: El text i l'emoji del botó també canvien de manera condicional:
+
+```javascript
+const buttonText = isLiked ? '❤️ M\'agrada (Desactivar)' : '🤍 M\'agrada (Activar)';
+```
+
+Aquesta interacció demostra el cicle clàssic de React: **Estat** $\rightarrow$ **Renderització** $\rightarrow$ **Interacció** $\rightarrow$ **Nou Estat**.
