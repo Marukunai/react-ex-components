@@ -4,6 +4,15 @@ Aquest repositori és un curs pràctic i complet dissenyat per portar-te des del
 
 ---
 
+## 💡 Com Començar i Reptes
+
+Per a una experiència d'aprenentatge òptima, us recomanem que intenteu resoldre els exercicis abans de mirar les solucions.
+
+👉 **[ACCEDIR A LES PROPOSTES D'EXERCICI DETALLADES AQUÍ](PROPOSTES.md)**
+(Aquest document conté els enunciats dels reptes de programació a fer des de zero.)
+
+---
+
 ## 🏗️ Estructura del Repositori
 
 El contingut s'organitza en tres seccions principals per a un aprenentatge progressiu:
