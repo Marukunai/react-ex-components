@@ -8,7 +8,7 @@ Aquest repositori és un curs pràctic i complet dissenyat per portar-te des del
 
 Per a una experiència d'aprenentatge òptima, us recomanem que intenteu resoldre els exercicis abans de mirar les solucions.
 
-👉 **[ACCEDIR A LES PROPOSTES D'EXERCICI DETALLADES AQUÍ](PROPOSTES.md)**
+👉 **[ACCEDIR A LES PROPOSTES D'EXERCICI DETALLADES AQUÍ](propostes.md)**
 (Aquest document conté els enunciats dels reptes de programació a fer des de zero.)
 
 ---
